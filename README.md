@@ -1,2 +1,2 @@
-# basedemo
-demo 开发 project
+# base demo
+spring 系列开发demo
