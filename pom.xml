@@ -26,7 +26,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<mybatis.spring.version>1.2.4</mybatis.spring.version>
-		<mapper.starter.version>2.0.3-beta1</mapper.starter.version>
+		<mapper.starter.version>2.1.0</mapper.starter.version>
 		<pagehelper.starter.version>1.2.5</pagehelper.starter.version>
 		<commons.lang.version>3.8.1</commons.lang.version>
 	</properties>
@@ -86,6 +86,11 @@
 			</dependency>
 
 			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-aop</artifactId>
+			</dependency>
+
+			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
 				<version>${commons.lang.version}</version>
@@ -130,9 +135,14 @@
 			<dependency>
 				<groupId>org.mybatis.spring.boot</groupId>
 				<artifactId>mybatis-spring-boot-starter</artifactId>
-				<version>1.3.1</version>
+				<version>1.3.2</version>
 			</dependency>
 
+			<dependency>
+				<groupId>tk.mybatis</groupId>
+				<artifactId>mapper-spring-boot-starter</artifactId>
+				<version>2.1.0</version>
+			</dependency>
 			<!--mapper-->
 			<dependency>
 				<groupId>tk.mybatis</groupId>
@@ -144,22 +154,25 @@
 				<groupId>com.github.pagehelper</groupId>
 				<artifactId>pagehelper-spring-boot-starter</artifactId>
 				<version>${pagehelper.starter.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.mybatis.spring.boot</groupId>
-						<artifactId>mybatis-spring-boot-starter</artifactId>
-					</exclusion>
-				</exclusions>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
+			<groupId>tk.mybatis</groupId>
+			<artifactId>mapper-spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -181,37 +194,6 @@
 			<artifactId>guava</artifactId>
 		</dependency>
 
-		<!--<dependency>-->
-			<!--<groupId>org.mybatis.spring.boot</groupId>-->
-			<!--<artifactId>mybatis-spring-boot-starter</artifactId>-->
-			<!--<exclusions>-->
-				<!--<exclusion>-->
-					<!--<artifactId>mybatis</artifactId>-->
-					<!--<groupId>org.mybatis</groupId>-->
-				<!--</exclusion>-->
-				<!--<exclusion>-->
-					<!--<artifactId>mybatis-spring</artifactId>-->
-					<!--<groupId>org.mybatis</groupId>-->
-				<!--</exclusion>-->
-			<!--</exclusions>-->
-		<!--</dependency>-->
-
-		<!--&lt;!&ndash;mapper&ndash;&gt;-->
-		<!--<dependency>-->
-			<!--<groupId>tk.mybatis</groupId>-->
-			<!--<artifactId>mapper-spring-boot-starter</artifactId>-->
-		<!--</dependency>-->
-		<!--&lt;!&ndash;pagehelper&ndash;&gt;-->
-		<!--<dependency>-->
-			<!--<groupId>com.github.pagehelper</groupId>-->
-			<!--<artifactId>pagehelper-spring-boot-starter</artifactId>-->
-		<!--</dependency>-->
-
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.0.7.1</version>
-        </dependency>
 	</dependencies>
 
 	<profiles>

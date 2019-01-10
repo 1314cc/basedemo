@@ -11,7 +11,11 @@
         <property name="endingDelimiter" value="`"/>
 
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-            <property name="mappers" value="com.black.demo.util.MyMapper"/>
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+            <!--<property name="caseSensitive" value="true"/>-->
+            <property name="forceAnnotation" value="true"/>
+            <property name="beginningDelimiter" value="`"/>
+            <property name="endingDelimiter" value="`"/>
         </plugin>
 
         <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
@@ -21,6 +25,8 @@
         </jdbcConnection>
 
         <javaModelGenerator targetPackage="com.black.demo.model" targetProject="src/main/java/">
+            <property name="trimStrings" value="true" />
+
         </javaModelGenerator>
 
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources/"/>
@@ -28,21 +34,22 @@
         <javaClientGenerator targetPackage="com.black.demo.mapper" targetProject="src/main/java/"
                              type="XMLMAPPER"/>
 
-        <table tableName="t_store">
+        <table tableName="t_store" domainObjectName="Store">
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
             <!--oracle 配置-->
             <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
         </table>
-        <table tableName="t_style">
+        <table tableName="t_style" domainObjectName="Style">
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
             <!--oracle 配置-->
             <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
         </table>
-        <table tableName="t_category">
+        <table tableName="t_category" domainObjectName="Category">
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <!--<ignoreColumn column="category_name"/>-->
             <!--oracle 配置-->
             <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
         </table>
