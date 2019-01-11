@@ -16,5 +16,18 @@
         <artifactId>demo</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.black.unicorn</groupId>
+            <artifactId>demo-service</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

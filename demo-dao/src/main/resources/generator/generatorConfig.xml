@@ -24,32 +24,19 @@
                         password="${spring.datasource.password}">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="com.black.demo.model" targetProject="src/main/java/">
+        <javaModelGenerator targetPackage="com.black.unicorn.demo.dao.model" targetProject="src/main/java/">
             <property name="trimStrings" value="true" />
 
         </javaModelGenerator>
 
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources/"/>
 
-        <javaClientGenerator targetPackage="com.black.demo.mapper" targetProject="src/main/java/"
+        <javaClientGenerator targetPackage="com.black.unicorn.demo.dao.mapper" targetProject="src/main/java/"
                              type="XMLMAPPER"/>
 
         <table tableName="t_store" domainObjectName="Store">
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-            <!--oracle 配置-->
-            <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
-        </table>
-        <table tableName="t_style" domainObjectName="Style">
-            <!--mysql 配置-->
-            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-            <!--oracle 配置-->
-            <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
-        </table>
-        <table tableName="t_category" domainObjectName="Category">
-            <!--mysql 配置-->
-            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-            <!--<ignoreColumn column="category_name"/>-->
             <!--oracle 配置-->
             <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
         </table>

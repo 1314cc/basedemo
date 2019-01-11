@@ -16,4 +16,11 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.black.unicorn</groupId>
+            <artifactId>demo-dao</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
