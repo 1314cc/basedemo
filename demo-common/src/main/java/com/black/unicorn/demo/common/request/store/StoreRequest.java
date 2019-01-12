@@ -1,4 +1,4 @@
-package com.black.unicorn.demo.gateway.view.request.store;
+package com.black.unicorn.demo.common.request.store;
 
 import io.swagger.annotations.ApiParam;
 import lombok.Getter;
@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @ToString
-public class StoreSearchRequest {
+public class StoreRequest {
     /**
      * 店铺id,自增
      */

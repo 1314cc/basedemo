@@ -14,7 +14,9 @@ public enum ReturnCodeEnum {
 	
     PARAM_VALIDATION_SUCCESS(600, "参数校验成功"),
 
-    ;
+	PARAM_DATA_VALIDATION_INVALID(701, "日期间隔大于30天"),
+
+	;
 
 	private int value;
 

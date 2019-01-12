@@ -21,6 +21,12 @@
             <groupId>com.black.unicorn</groupId>
             <artifactId>demo-dao</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.black.unicorn</groupId>
+            <artifactId>demo-common</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

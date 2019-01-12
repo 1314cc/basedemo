@@ -24,7 +24,22 @@ public class ResponseResult<T> implements Serializable {
     private Date time;
     
     private T data;
+//
+//    public static <T> ResponseResultBuilder<T> builder() {
+//        return new ResponseResultBuilder<>();
+//    }
 
+    public static <T> ResponseResult<T> success(){
+        return success(null);
+    }
+
+    public static <T> ResponseResult<T> ret400(){
+        return ret400(null);
+    }
+
+    public static <T> ResponseResult<T> ret500(){
+        return ret500(null);
+    }
 
     public static <T> ResponseResult<T> success(T data){
         return ResponseResult.<T>builder()
@@ -52,4 +67,61 @@ public class ResponseResult<T> implements Serializable {
                 .time(new Date())
                 .build();
     }
+
+
+    public static <T> ResponseResult<T> buildResponse(ReturnCodeEnum returnCodeEnum, T data) {
+       return  ResponseResult.<T>builder()
+                .data(data)
+                .message(returnCodeEnum.getDesc())
+                .status(returnCodeEnum.value())
+                .time(new Date())
+                .build();
+    }
+
+    public static <T> ResponseResult<T> buildResponse(ReturnCodeEnum returnCodeEnum) {
+        return  ResponseResult.<T>builder()
+                .data(null)
+                .message(returnCodeEnum.getDesc())
+                .status(returnCodeEnum.value())
+                .time(new Date())
+                .build();
+    }
 }
+
+//
+//class ResponseResultBuilder<T> {
+//    private int status;
+//    private String message;
+//    private T data;
+//    private Date time;
+//
+//    public ResponseResultBuilder<T> status(int status) {
+//        this.status = status;
+//        return this;
+//    }
+//
+//    public ResponseResultBuilder<T> message(String message) {
+//        this.message = message;
+//        return this;
+//    }
+//
+//    public ResponseResultBuilder<T> data(T data) {
+//        this.data = data;
+//        return this;
+//    }
+//
+//
+//    public ResponseResultBuilder<T> time(Date time) {
+//        this.time = time;
+//        return this;
+//    }
+//
+//    public ResponseResult<T> build() {
+//        ResponseResult<T> response = new ResponseResult<>();
+//        response.setData(data);
+//        response.setMessage(message);
+//        response.setStatus(status);
+//        response.setTime(time);
+//        return response;
+//    }
+//}

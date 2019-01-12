@@ -41,4 +41,10 @@ public interface CommonConstants {
 	public final static String DATETIME_PATTERN_YYYYMMDDHHMMSS = "yyyyMMddHHmmss";
 	
 	public final static String DATETIME_PATTERN_YYYY_MM_DD = "yyyy-MM-dd";
+
+
+	public final static int MAX_PAGE_SIZE = 1000;
+	public final static int MAX_PAGE_NUM = 100;
+
+	public final static int MAX_DATA_GAP = 30;
 }

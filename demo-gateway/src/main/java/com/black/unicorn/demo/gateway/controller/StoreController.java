@@ -1,31 +1,11 @@
-/*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014-2016 abel533@gmail.com
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
 package com.black.unicorn.demo.gateway.controller;
 
+import com.black.unicorn.demo.common.enums.ReturnCodeEnum;
+import com.black.unicorn.demo.common.request.store.StoreRequest;
+import com.black.unicorn.demo.common.request.store.StoreSearchRequest;
+import com.black.unicorn.demo.common.response.Page;
 import com.black.unicorn.demo.common.response.ResponseResult;
-import com.black.unicorn.demo.gateway.view.request.store.StoreRequest;
+import com.black.unicorn.demo.dao.model.Store;
 import com.black.unicorn.demo.service.StoreService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
 
 @Api(value = "Store")
 @RestController
@@ -58,8 +39,14 @@ public class StoreController {
         return ResponseResult.success(result);
     }
 
+    @ApiOperation(value = "详情Store", notes = "详情Store")
+    @PostMapping("/info/{id}")
+    public ResponseResult<Store> infoStore(@PathVariable(value = "id") long id) {
+        Store store = storeService.getById(id);
+        return ResponseResult.success(store);
+    }
 
-    @ApiOperation(value = "修改Store", notes = "修改Store")
+    @ApiOperation(value = "删除Store", notes = "删除Store")
     @DeleteMapping("/delete/{id}")
     public ResponseResult editStore(@PathVariable(value = "id") Long id) {
         boolean result = storeService.deleteByPrimaryKey(id);
@@ -69,8 +56,13 @@ public class StoreController {
 
     @ApiOperation(value = "查找Store", notes = "查找Store")
     @GetMapping("/search")
-    public ResponseResult editStore(@Valid) {
-        boolean result = storeService.deleteByPrimaryKey(id);
+    public ResponseResult<Page<Store>> searchStore(@Valid StoreSearchRequest storeSearchRequest) {
+
+        ReturnCodeEnum returnCodeEnum = storeSearchRequest.validate();
+        if (returnCodeEnum != ReturnCodeEnum.PARAM_VALIDATION_SUCCESS) {
+            return ResponseResult.buildResponse(returnCodeEnum);
+        }
+        Page<Store> result = storeService.searchStoreByPage(storeSearchRequest);
         return ResponseResult.success(result);
     }
 
