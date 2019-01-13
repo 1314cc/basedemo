@@ -3,11 +3,12 @@ package com.black.unicorn.demo.dao.model;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "`t_store`")
+@Table(name = "`t_test_store`")
 public class Store {
     /**
      * 店铺id,自增 
      */
+    @Id
     @Column(name = "`id`")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,12 +26,6 @@ public class Store {
     private String storeDesc;
 
     /**
-     * 店铺图标url
-     */
-    @Column(name = "`store_icon`")
-    private String storeIcon;
-
-    /**
      * 首字母
      */
     @Column(name = "`store_first_letter`")
@@ -41,12 +36,6 @@ public class Store {
      */
     @Column(name = "`mall_id`")
     private String mallId;
-
-    /**
-     * 轮播图,json
-     */
-    @Column(name = "`urls`")
-    private String urls;
 
     /**
      * 楼层
@@ -71,30 +60,6 @@ public class Store {
      */
     @Column(name = "`category_display`")
     private String categoryDisplay;
-
-    /**
-     * 展位号
-     */
-    @Column(name = "`position_no`")
-    private String positionNo;
-
-    /**
-     * 品牌id
-     */
-    @Column(name = "`brand_id`")
-    private Long brandId;
-
-    /**
-     * 品牌名称
-     */
-    @Column(name = "`brand_name`")
-    private String brandName;
-
-    /**
-     * 热度权重,默认为0
-     */
-    @Column(name = "`hot_weights`")
-    private Integer hotWeights;
 
     /**
      * 权重,默认为0
@@ -187,24 +152,6 @@ public class Store {
     }
 
     /**
-     * 获取店铺图标url
-     *
-     * @return store_icon - 店铺图标url
-     */
-    public String getStoreIcon() {
-        return storeIcon;
-    }
-
-    /**
-     * 设置店铺图标url
-     *
-     * @param storeIcon 店铺图标url
-     */
-    public void setStoreIcon(String storeIcon) {
-        this.storeIcon = storeIcon == null ? null : storeIcon.trim();
-    }
-
-    /**
      * 获取首字母
      *
      * @return store_first_letter - 首字母
@@ -238,24 +185,6 @@ public class Store {
      */
     public void setMallId(String mallId) {
         this.mallId = mallId == null ? null : mallId.trim();
-    }
-
-    /**
-     * 获取轮播图,json
-     *
-     * @return urls - 轮播图,json
-     */
-    public String getUrls() {
-        return urls;
-    }
-
-    /**
-     * 设置轮播图,json
-     *
-     * @param urls 轮播图,json
-     */
-    public void setUrls(String urls) {
-        this.urls = urls == null ? null : urls.trim();
     }
 
     /**
@@ -328,78 +257,6 @@ public class Store {
      */
     public void setCategoryDisplay(String categoryDisplay) {
         this.categoryDisplay = categoryDisplay == null ? null : categoryDisplay.trim();
-    }
-
-    /**
-     * 获取展位号
-     *
-     * @return position_no - 展位号
-     */
-    public String getPositionNo() {
-        return positionNo;
-    }
-
-    /**
-     * 设置展位号
-     *
-     * @param positionNo 展位号
-     */
-    public void setPositionNo(String positionNo) {
-        this.positionNo = positionNo == null ? null : positionNo.trim();
-    }
-
-    /**
-     * 获取品牌id
-     *
-     * @return brand_id - 品牌id
-     */
-    public Long getBrandId() {
-        return brandId;
-    }
-
-    /**
-     * 设置品牌id
-     *
-     * @param brandId 品牌id
-     */
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
-    }
-
-    /**
-     * 获取品牌名称
-     *
-     * @return brand_name - 品牌名称
-     */
-    public String getBrandName() {
-        return brandName;
-    }
-
-    /**
-     * 设置品牌名称
-     *
-     * @param brandName 品牌名称
-     */
-    public void setBrandName(String brandName) {
-        this.brandName = brandName == null ? null : brandName.trim();
-    }
-
-    /**
-     * 获取热度权重,默认为0
-     *
-     * @return hot_weights - 热度权重,默认为0
-     */
-    public Integer getHotWeights() {
-        return hotWeights;
-    }
-
-    /**
-     * 设置热度权重,默认为0
-     *
-     * @param hotWeights 热度权重,默认为0
-     */
-    public void setHotWeights(Integer hotWeights) {
-        this.hotWeights = hotWeights;
     }
 
     /**

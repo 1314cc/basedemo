@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.weekend.Weekend;
 import tk.mybatis.mapper.weekend.WeekendCriteria;
+
 import java.util.List;
 
 /**
@@ -35,7 +36,7 @@ public class StoreServiceImpl implements StoreService {
         Store store = BeanUtils.transfrom(Store.class, storeRequest);
         long result;
         if (store.getId() != null && store.getId() != 0) {
-            result  = storeMapper.updateByPrimaryKey(store);
+            result = storeMapper.updateByPrimaryKey(store);
         } else {
             storeMapper.insertSelective(store);
             result = store.getId();
@@ -51,7 +52,7 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public boolean deleteByPrimaryKey(long id) {
         int result = storeMapper.deleteByPrimaryKey(id);
-        if(result > 0 ){
+        if (result > 0) {
             return true;
         }
         return false;
@@ -65,28 +66,28 @@ public class StoreServiceImpl implements StoreService {
             criteria.andLike(Store::getStoreName, "%" + storeSearchRequest.getStoreName() + "%");
         }
         if (StringUtils.isNotBlank(storeSearchRequest.getStoreFirstLetter())) {
-            criteria.andEqualTo(Store::getStoreFirstLetter,storeSearchRequest.getStoreFirstLetter());
+            criteria.andEqualTo(Store::getStoreFirstLetter, storeSearchRequest.getStoreFirstLetter());
         }
         if (StringUtils.isNotBlank(storeSearchRequest.getStoreFirstLetter())) {
-            criteria.andEqualTo(Store::getStoreFirstLetter,storeSearchRequest.getStoreFirstLetter());
+            criteria.andEqualTo(Store::getStoreFirstLetter, storeSearchRequest.getStoreFirstLetter());
         }
         if (StringUtils.isNotBlank(storeSearchRequest.getMallId())) {
-            criteria.andEqualTo(Store::getMallId,storeSearchRequest.getMallId());
+            criteria.andEqualTo(Store::getMallId, storeSearchRequest.getMallId());
         }
         if (StringUtils.isNotBlank(storeSearchRequest.getFloorNo())) {
-            criteria.andEqualTo(Store::getFloorNo,storeSearchRequest.getFloorNo());
+            criteria.andEqualTo(Store::getFloorNo, storeSearchRequest.getFloorNo());
         }
         if (StringUtils.isNotBlank(storeSearchRequest.getFloorNo())) {
-            criteria.andEqualTo(Store::getFloorNo,storeSearchRequest.getFloorNo());
+            criteria.andEqualTo(Store::getFloorNo, storeSearchRequest.getFloorNo());
         }
-        if(ObjectUtils.allNotNull(storeSearchRequest.getCreateTimeFrom(),storeSearchRequest.getCreateTimeTo())){
-            criteria.andGreaterThanOrEqualTo(Store::getCreateTime,storeSearchRequest.getCreateTimeFrom())
-                    .andLessThan(Store::getCreateTime,storeSearchRequest.getCreateTimeTo());
+        if (ObjectUtils.allNotNull(storeSearchRequest.getCreateTimeFrom(), storeSearchRequest.getCreateTimeTo())) {
+            criteria.andGreaterThanOrEqualTo(Store::getCreateTime, storeSearchRequest.getCreateTimeFrom())
+                    .andLessThan(Store::getCreateTime, storeSearchRequest.getCreateTimeTo());
         }
         weekend.orderBy("crateTime").desc();
         PageHelper.offsetPage(storeSearchRequest.getPageNum(), storeSearchRequest.getPageSize());
 
-        List<Store> storeList= storeMapper.selectByExample(weekend);
+        List<Store> storeList = storeMapper.selectByExample(weekend);
         PageInfo<Store> page = new PageInfo<>(storeList);
         return Page.<Store>builder().pageNum(storeSearchRequest.getPageNum()).pageSize(storeSearchRequest.getPageSize())
                 .resultList(storeList).totalCount(page.getTotal()).build();

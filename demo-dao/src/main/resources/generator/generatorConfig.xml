@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <properties resource="generator/application.properties"/>
+    <properties resource="generator/dao.properties"/>
 
     <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
         <property name="beginningDelimiter" value="`"/>
@@ -18,23 +18,21 @@
             <property name="endingDelimiter" value="`"/>
         </plugin>
 
-        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
-                        connectionURL="${spring.datasource.url}"
-                        userId="${spring.datasource.username}"
-                        password="${spring.datasource.password}">
+        <jdbcConnection driverClass="${driver-class-name}"
+                        connectionURL="${url}"
+                        userId="${username}"
+                        password="${password}">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="com.black.unicorn.demo.dao.model" targetProject="src/main/java/">
-            <property name="trimStrings" value="true" />
-
+        <javaModelGenerator targetPackage="com.black.unicorn.demo.dao.model" targetProject="src/main/java">
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources/"/>
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
 
-        <javaClientGenerator targetPackage="com.black.unicorn.demo.dao.mapper" targetProject="src/main/java/"
+        <javaClientGenerator targetPackage="com.black.unicorn.demo.dao.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
-        <table tableName="t_store" domainObjectName="Store">
+        <table tableName="t_test_store" domainObjectName="Store" schema="test">
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
             <!--oracle 配置-->
