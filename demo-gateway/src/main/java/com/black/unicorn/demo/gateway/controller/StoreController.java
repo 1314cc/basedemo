@@ -13,12 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Api(value = "Store")
 @RestController
 @RequestMapping("/store")
-public class StoreController {
+public class StoreController extends BaseComtroller {
 
     @Autowired
     private StoreService storeService;
@@ -63,6 +64,19 @@ public class StoreController {
             return ResponseResult.buildResponse(returnCodeEnum);
         }
         Page<Store> result = storeService.searchStoreByPage(storeSearchRequest);
+        return ResponseResult.success(result);
+    }
+
+
+    @ApiOperation(value = "查找Store", notes = "查找Store")
+    @GetMapping("/selectByTime")
+    public ResponseResult<List<Store>> selectByTime(@Valid StoreSearchRequest storeSearchRequest) {
+
+        ReturnCodeEnum returnCodeEnum = storeSearchRequest.validate();
+        if (returnCodeEnum != ReturnCodeEnum.PARAM_VALIDATION_SUCCESS) {
+            return ResponseResult.buildResponse(returnCodeEnum);
+        }
+        List<Store> result = storeService.selectByTime(storeSearchRequest.getCreateTimeFrom(), storeSearchRequest.getCreateTimeTo());
         return ResponseResult.success(result);
     }
 

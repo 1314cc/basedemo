@@ -3,7 +3,7 @@ package com.black.unicorn.demo.dao.model;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "`t_test_store`")
+@Table(name = "`t_store`")
 public class Store {
     /**
      * 店铺id,自增 

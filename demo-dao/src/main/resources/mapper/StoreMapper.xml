@@ -21,4 +21,28 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="TINYINT" />
   </resultMap>
+
+  <select id="selectByTime" resultType="com.black.unicorn.demo.dao.model.Store">
+    SELECT
+      ts.id as id,
+      ts.store_name as storeName,
+      ts.store_desc as storeDesc,
+      ts.mall_id as mallId,
+      ts.floor_no as floorNo,
+      ts.map_area_id as mapAreaId,
+      ts.shop_id as shopId,
+      ts.category_display as categoryDisplay,
+      ts.weights as weights,
+      ts.create_by as createBy,
+      ts.update_by as updateBy,
+      ts.create_time as createTime,
+      ts.update_time as updateTime
+    FROM
+    t_store as ts
+    where
+    create_time  &gt; #{startDate}
+    AND
+    create_time  &lt; #{endDate}
+  </select>
+
 </mapper>

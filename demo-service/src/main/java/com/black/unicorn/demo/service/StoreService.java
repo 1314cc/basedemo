@@ -7,6 +7,9 @@ import com.black.unicorn.demo.common.response.Page;
 import com.black.unicorn.demo.dao.model.Store;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * @Author: chen
  * @Description:
@@ -37,4 +40,6 @@ public interface StoreService {
      */
     Page<Store> searchStoreByPage(StoreSearchRequest storeSearchRequest);
 
+
+    List<Store> selectByTime(Date startTime , Date endTime);
 }

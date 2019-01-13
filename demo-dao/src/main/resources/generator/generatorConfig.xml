@@ -24,7 +24,7 @@
                         password="${password}">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="com.black.unicorn.demo.dao.model" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.black.unicorn.demo.dao.model" targetProject="src/main/java">∑
         </javaModelGenerator>
 
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>

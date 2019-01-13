@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.weekend.Weekend;
 import tk.mybatis.mapper.weekend.WeekendCriteria;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -81,15 +82,22 @@ public class StoreServiceImpl implements StoreService {
             criteria.andEqualTo(Store::getFloorNo, storeSearchRequest.getFloorNo());
         }
         if (ObjectUtils.allNotNull(storeSearchRequest.getCreateTimeFrom(), storeSearchRequest.getCreateTimeTo())) {
-            criteria.andGreaterThanOrEqualTo(Store::getCreateTime, storeSearchRequest.getCreateTimeFrom())
-                    .andLessThan(Store::getCreateTime, storeSearchRequest.getCreateTimeTo());
+//            criteria.andGreaterThanOrEqualTo(Store::getCreateTime, storeSearchRequest.getCreateTimeFrom())
+//                    .andLessThan(Store::getCreateTime, storeSearchRequest.getCreateTimeTo());
+//            criteria.andBetween(Store::getCreateTime,storeSearchRequest.getCreateTimeFrom(),storeSearchRequest.getCreateTimeTo())
+            criteria.andGreaterThan(Store::getCreateTime,storeSearchRequest.getCreateTimeFrom());
         }
-        weekend.orderBy("crateTime").desc();
+        weekend.orderBy("createTime").desc();
         PageHelper.offsetPage(storeSearchRequest.getPageNum(), storeSearchRequest.getPageSize());
 
         List<Store> storeList = storeMapper.selectByExample(weekend);
         PageInfo<Store> page = new PageInfo<>(storeList);
         return Page.<Store>builder().pageNum(storeSearchRequest.getPageNum()).pageSize(storeSearchRequest.getPageSize())
                 .resultList(storeList).totalCount(page.getTotal()).build();
+    }
+
+    @Override
+    public List<Store> selectByTime(Date startTime, Date endTime) {
+        return storeMapper.selectByTime(startTime,endTime);
     }
 }

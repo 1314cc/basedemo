@@ -26,7 +26,7 @@ public class LoggerAspect extends BaseAspect {
 	 * @return
 	 * @throws Throwable
 	 */
-    @Around(value = "(execution(public * com.black.unicorn.demo.gateway.controller..*.*(..)) && (execution (@org.springframework.web.bind.annotation.RequestMapping * *(..))))")
+    @Around(value = "(execution(public * com.black.unicorn.demo.gateway.controller..*.*(..)) ||  (execution (@org.springframework.web.bind.annotation.RequestMapping * *(..))))")
 	public Object loggerPrint(ProceedingJoinPoint pjp) throws Throwable {
 		Object retObject = null;
 		try {

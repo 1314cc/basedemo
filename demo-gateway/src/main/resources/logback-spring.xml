@@ -83,7 +83,7 @@
 			<charset>UTF-8</charset>
 		</encoder>
 		<filter class="ch.qos.logback.classic.filter.LevelFilter">
-			<level>INFO</level>
+			<level>DEBUG</level>
 			<onMatch>ACCEPT</onMatch>
 			<onMismatch>DENY</onMismatch>
 		</filter>
@@ -117,12 +117,12 @@
 	</appender>
 
 
-	<logger name="com.black.unicorn.demo.dao">
+	<logger name="com.black.unicorn.demo.dao" additivity="false">
 		<level value="debug" />
 		<appender-ref ref="SQL" />
 	</logger>
 	
-	<logger name="controller_digest">
+	<logger name="controller_digest" additivity="false" >
 		<level value="INFO" />
 		<appender-ref ref="controller_digest" />
 	</logger>
